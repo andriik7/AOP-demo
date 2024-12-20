@@ -10,7 +10,7 @@ public class MembershipDAOImpl implements MembershipDAO {
     Logger logger = LogManager.getLogger(MembershipDAOImpl.class);
 
     @Override
-    public void saveAccount() {
-        logger.warn("Executing saveAccount() in " + this.getClass().getSimpleName());
+    public void saveMembership() {
+        logger.warn("Executing saveMembership() in " + this.getClass().getSimpleName());
     }
 }

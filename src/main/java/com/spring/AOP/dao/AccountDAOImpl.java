@@ -14,4 +14,9 @@ public class AccountDAOImpl implements AccountDAO {
     public void saveAccount() {
         logger.warn("Executing saveAccount() in " + this.getClass().getSimpleName());
     }
+
+    @Override
+    public void savePetro() {
+        logger.warn("Executing savePetro() in " + this.getClass().getSimpleName());
+    }
 }

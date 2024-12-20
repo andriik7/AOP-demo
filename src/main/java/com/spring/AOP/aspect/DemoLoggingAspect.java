@@ -14,15 +14,15 @@ public class DemoLoggingAspect {
 
     private static final Logger logger = LogManager.getLogger(DemoLoggingAspect.class);
 
-    @Before("execution(* com.spring.AOP.dao.MembershipDAO.saveAccount())")
+    @Before("execution(* save*())")
     public void beforeSaveAccountAdvice() {
 
-        logger.warn("Executing @Before advice on saveAccount()");
+        logger.warn("Executing @Before advice on save*");
     }
 
-    @After("execution(* saveAccount())")
+    @After("execution(* save*())")
     public void afterSaveAccountAdvice() {
 
-        logger.warn("Executing @After advice on saveAccount()");
+        logger.warn("Executing @After advice on save*");
     }
 }

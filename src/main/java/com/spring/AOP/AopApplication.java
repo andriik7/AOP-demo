@@ -25,7 +25,9 @@ public class AopApplication {
 
 		accountDAO.saveAccount();
 
-		membershipDAO.saveAccount();
+		accountDAO.savePetro();
+
+		membershipDAO.saveMembership();
 	}
 
 }
