@@ -9,14 +9,14 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-@Order(1)
-public class DemoLoggingAspect {
+@Order(3)
+public class DemoCloudLogAspect {
 
-    private static final Logger logger = LogManager.getLogger(DemoLoggingAspect.class);
+    Logger logger = LogManager.getLogger(DemoCloudLogAspect.class);
 
     @Before("com.spring.AOP.aspect.expressions.AOPExpressions.forDaoPackageNoGetterSetter()")
-    public void beforeSaveAccountAdvice() {
+    public void logToCloud() {
 
-        logger.warn("====>>>> Executing @Before logging advice on no getters/setters");
+        logger.warn("====>>>> Logging to cloud");
     }
 }
