@@ -2,5 +2,5 @@ package com.spring.AOP.dao;
 
 public interface MembershipDAO {
 
-    void saveMembership();
+    int saveMembership();
 }

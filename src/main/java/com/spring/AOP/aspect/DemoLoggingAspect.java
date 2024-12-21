@@ -14,7 +14,7 @@ public class DemoLoggingAspect {
 
     private static final Logger logger = LogManager.getLogger(DemoLoggingAspect.class);
 
-    @Before("execution(* save*())")
+    @Before("execution(void save*())")
     public void beforeSaveAccountAdvice() {
 
         logger.warn("Executing @Before advice on save*");
