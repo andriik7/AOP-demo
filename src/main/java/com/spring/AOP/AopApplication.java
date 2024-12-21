@@ -31,8 +31,6 @@ public class AopApplication {
 	private void afterReturningAdviceDemo(AccountDAO accountDAO, MembershipDAO membershipDAO) {
 
 		List<Account> accounts = accountDAO.findAccounts();
-
-		System.out.println("\n\nMain program: afterReturningDemoApp");
 	}
 
 	public void beforeAdviceDemo(AccountDAO accountDAO, MembershipDAO membershipDAO) {

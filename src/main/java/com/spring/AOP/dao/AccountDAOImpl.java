@@ -6,10 +6,25 @@ import org.springframework.stereotype.Repository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Repository
 public class AccountDAOImpl implements AccountDAO {
 
     Logger logger = LogManager.getLogger(AccountDAOImpl.class);
+
+    @Override
+    public List<Account> findAccounts() {
+
+        Account account1 = new Account("John", "Silver");
+        Account account2 = new Account("Mary", "Gold");
+        Account account3 = new Account("Luis", "Platinum");
+
+        logger.warn("Executing findAccounts() in " + this.getClass().getSimpleName());
+
+        return new ArrayList<>(List.of(account1, account2, account3));
+    }
 
     @Override
     public void saveAccount(Account account, boolean vipFlag) {

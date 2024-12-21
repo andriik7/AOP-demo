@@ -1,8 +1,5 @@
 package com.spring.AOP.aspect.expressions;
 
-import com.spring.AOP.aspect.DemoLoggingAspect;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.annotation.Pointcut;
 
 public class AOPExpressions {
@@ -21,4 +18,7 @@ public class AOPExpressions {
 
     @Pointcut("forDaoPackage() && !(forGetter() || forSetter())")
     public void forDaoPackageNoGetterSetter() {}
+
+    @Pointcut("execution(* com.spring.AOP.dao.AccountDAO.findAccounts(..))")
+    public void forFindAccounts() {}
 }
