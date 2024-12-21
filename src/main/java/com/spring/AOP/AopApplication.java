@@ -9,6 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class AopApplication {
 
@@ -20,8 +22,17 @@ public class AopApplication {
 	public CommandLineRunner commandLineRunner(AccountDAO accountDAO, MembershipDAO membershipDAO) {
 		return runner -> {
 
-			beforeAdviceDemo(accountDAO, membershipDAO);
+			//beforeAdviceDemo(accountDAO, membershipDAO);
+
+			afterReturningAdviceDemo(accountDAO, membershipDAO);
 		};
+	}
+
+	private void afterReturningAdviceDemo(AccountDAO accountDAO, MembershipDAO membershipDAO) {
+
+		List<Account> accounts = accountDAO.findAccounts();
+
+		System.out.println("\n\nMain program: afterReturningDemoApp");
 	}
 
 	public void beforeAdviceDemo(AccountDAO accountDAO, MembershipDAO membershipDAO) {
@@ -34,7 +45,7 @@ public class AopApplication {
 
 		accountDAO.savePetro();
 
-		membershipDAO.saveMembership(new Membership("test", "test"));
+		membershipDAO.saveMembership(new Membership("test", "12345"));
 
 		membershipDAO.getMembership();
 
