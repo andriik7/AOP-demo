@@ -27,23 +27,25 @@ public class DemoLoggingAspect {
     @Pointcut("execution(* com.spring.AOP.dao.*.set*(..))")
     private void forSetter() {}
 
+    @Pointcut("forDaoPackage() && !(forGetter() || forSetter())")
+    private void forDaoPackageNoGetterSetter() {}
 
-    @Before("forDaoPackage() && !(forGetter() || forSetter())")
+
+    @Before("forDaoPackageNoGetterSetter()")
     public void beforeSaveAccountAdvice() {
 
-        logger.warn("====>>>> Executing @Before advice on save*");
+        logger.warn("====>>>> Executing @Before advice on no getters/setters");
     }
 
-    @Before("forDaoPackage() && forSetter()")
+    @Before("forDaoPackage() && forSetter()") // could be just forSetter()
     public void performAnalysis() {
 
-        logger.warn("====>>>> Performing analysis");
-
+        logger.warn("====>>>> Performing analysis on setters");
     }
 
-    @After("forDaoPackage() && forGetter()")
+    @After("forDaoPackage() && forGetter()") // could be just forGetter()
     public void afterSaveAccountAdvice() {
 
-        logger.warn("====>>>> Executing @After advice on save*");
+        logger.warn("====>>>> Executing @After advice on getters");
     }
 }
