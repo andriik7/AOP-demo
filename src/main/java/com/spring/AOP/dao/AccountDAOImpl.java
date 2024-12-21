@@ -1,5 +1,6 @@
 package com.spring.AOP.dao;
 
+import com.spring.AOP.model.Account;
 import org.springframework.stereotype.Repository;
 
 import org.apache.logging.log4j.LogManager;
@@ -11,7 +12,7 @@ public class AccountDAOImpl implements AccountDAO {
     Logger logger = LogManager.getLogger(AccountDAOImpl.class);
 
     @Override
-    public void saveAccount() {
+    public void saveAccount(Account account, boolean vipFlag) {
         logger.warn("Executing saveAccount() in " + this.getClass().getSimpleName());
     }
 
