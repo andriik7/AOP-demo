@@ -18,25 +18,32 @@ public class DemoLoggingAspect {
     // () - no arguments
     // (*) - one argument of any type
     // (..) - 0 or more arguments of any types
-    @Pointcut("execution(* com.spring.AOP.dao.*.*(com.spring.AOP.model.*, ..))")
+    @Pointcut("execution(* com.spring.AOP.dao.*.*(..))")
     private void forDaoPackage() {}
 
-    @Before("forDaoPackage()")
+    @Pointcut("execution(* com.spring.AOP.dao.*.get*(..))")
+    private void forGetter() {}
+
+    @Pointcut("execution(* com.spring.AOP.dao.*.set*(..))")
+    private void forSetter() {}
+
+
+    @Before("forDaoPackage() && !(forGetter() || forSetter())")
     public void beforeSaveAccountAdvice() {
 
-        logger.warn("Executing @Before advice on save*");
+        logger.warn("====>>>> Executing @Before advice on save*");
     }
 
-    @Before("forDaoPackage()")
+    @Before("forDaoPackage() && forSetter()")
     public void performAnalysis() {
 
-        logger.warn("Performing analysis");
+        logger.warn("====>>>> Performing analysis");
 
     }
 
-    @After("forDaoPackage()")
+    @After("forDaoPackage() && forGetter()")
     public void afterSaveAccountAdvice() {
 
-        logger.warn("Executing @After advice on save*");
+        logger.warn("====>>>> Executing @After advice on save*");
     }
 }

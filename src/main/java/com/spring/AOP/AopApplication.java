@@ -28,9 +28,17 @@ public class AopApplication {
 
 		accountDAO.saveAccount(new Account("test", "test"), true);
 
+		accountDAO.getAccount();
+
+		accountDAO.setAccount(new Account("test", "test"));
+
 		accountDAO.savePetro();
 
 		membershipDAO.saveMembership(new Membership("test", "test"));
+
+		membershipDAO.getMembership();
+
+		membershipDAO.setMembership(new Membership("test", "test"));
 	}
 
 }

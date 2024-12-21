@@ -16,4 +16,14 @@ public class MembershipDAOImpl implements MembershipDAO {
 
         return 1;
     }
+
+    @Override
+    public void getMembership() {
+        logger.warn("Executing getMembership() in " + this.getClass().getSimpleName());
+    }
+
+    @Override
+    public void setMembership(Membership membership) {
+        logger.warn("Executing setMembership() in " + this.getClass().getSimpleName());
+    }
 }
