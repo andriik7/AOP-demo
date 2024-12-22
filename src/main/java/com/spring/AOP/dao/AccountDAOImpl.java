@@ -23,13 +23,13 @@ public class AccountDAOImpl implements AccountDAO {
     @Override
     public List<Account> findAccounts(boolean vipFlag) {
 
+        logger.warn("Executing findAccounts() in " + this.getClass().getSimpleName());
+
         if (vipFlag) throw new RuntimeException("No VIP accounts available");
 
         Account account1 = new Account("John", "Silver");
         Account account2 = new Account("Mary", "Gold");
         Account account3 = new Account("Luis", "Platinum");
-
-        logger.warn("Executing findAccounts() in " + this.getClass().getSimpleName());
 
         return new ArrayList<>(List.of(account1, account2, account3));
     }

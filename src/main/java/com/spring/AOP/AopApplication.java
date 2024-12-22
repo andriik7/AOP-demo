@@ -24,7 +24,7 @@ public class AopApplication {
 
 			//beforeAdviceDemo(accountDAO, membershipDAO);
 
-			//afterReturningAdviceDemo(accountDAO);
+			afterReturningAdviceDemo(accountDAO);
 
 			afterThrowingAdviceDemo(accountDAO);
 		};
