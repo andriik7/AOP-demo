@@ -4,6 +4,7 @@ import com.spring.AOP.dao.AccountDAO;
 import com.spring.AOP.dao.MembershipDAO;
 import com.spring.AOP.model.Account;
 import com.spring.AOP.model.Membership;
+import com.spring.AOP.service.TrafficFortuneService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,15 +20,23 @@ public class AopApplication {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(AccountDAO accountDAO, MembershipDAO membershipDAO) {
+	public CommandLineRunner commandLineRunner(AccountDAO accountDAO, MembershipDAO membershipDAO, TrafficFortuneService service) {
 		return runner -> {
 
 			//beforeAdviceDemo(accountDAO, membershipDAO);
 
-			afterReturningAdviceDemo(accountDAO);
+			//afterReturningAdviceDemo(accountDAO);
 
-			afterThrowingAdviceDemo(accountDAO);
+			//afterThrowingAdviceDemo(accountDAO);
+			
+			aroundAdviceDemo(service);
 		};
+	}
+
+	private void aroundAdviceDemo(TrafficFortuneService service) {
+
+		String result = service.getFortune();
+		System.out.println("The result is: " + result);
 	}
 
 	private void afterThrowingAdviceDemo(AccountDAO accountDAO) {

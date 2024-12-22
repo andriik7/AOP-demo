@@ -19,7 +19,8 @@ public class DemoCloudLogAspect {
     @After("com.spring.AOP.aspect.expressions.AOPExpressions.forFindAccounts()")
     public void logToCloudAfterFinally(JoinPoint theJoinPoint) {
 
-        logger.warn("====>>>> Logging to cloud @After finally on method : " + theJoinPoint.getSignature().toShortString());
+        logger.warn("====>>>> Logging to cloud @After finally on method : {}",
+                    theJoinPoint.getSignature().toShortString());
     }
 
     @Before("com.spring.AOP.aspect.expressions.AOPExpressions.forDaoPackageNoGetterSetter()")

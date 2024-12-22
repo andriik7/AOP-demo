@@ -4,7 +4,9 @@ import com.spring.AOP.model.Account;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.core.annotation.Order;
@@ -18,6 +20,23 @@ import java.util.List;
 public class DemoLoggingAspect {
 
     private static final Logger logger = LogManager.getLogger(DemoLoggingAspect.class);
+
+    @Around("execution(* com.spring.AOP.service.*.getFortune(..))")
+    public Object aroundGetFortune(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+
+        logger.warn("====>>>> Executing @Around advice on method: {}",
+                    proceedingJoinPoint.getSignature().toShortString());
+
+        long start = System.currentTimeMillis();
+
+        Object result = proceedingJoinPoint.proceed();
+
+        long finish = System.currentTimeMillis();
+
+        logger.warn("====>>>> Approximate execution time is: {}", finish - start);
+
+        return result;
+    }
 
     @AfterReturning(
             pointcut = "com.spring.AOP.aspect.expressions.AOPExpressions.forFindAccounts()",
