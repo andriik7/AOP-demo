@@ -14,8 +14,16 @@ public class AccountDAOImpl implements AccountDAO {
 
     Logger logger = LogManager.getLogger(AccountDAOImpl.class);
 
+
     @Override
     public List<Account> findAccounts() {
+        return findAccounts(false);
+    }
+
+    @Override
+    public List<Account> findAccounts(boolean vipFlag) {
+
+        if (vipFlag) throw new RuntimeException("No VIP accounts available");
 
         Account account1 = new Account("John", "Silver");
         Account account2 = new Account("Mary", "Gold");

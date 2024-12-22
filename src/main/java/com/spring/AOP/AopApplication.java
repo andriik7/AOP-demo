@@ -24,16 +24,26 @@ public class AopApplication {
 
 			//beforeAdviceDemo(accountDAO, membershipDAO);
 
-			afterReturningAdviceDemo(accountDAO, membershipDAO);
+			//afterReturningAdviceDemo(accountDAO);
+
+			afterThrowingAdviceDemo(accountDAO);
 		};
 	}
 
-	private void afterReturningAdviceDemo(AccountDAO accountDAO, MembershipDAO membershipDAO) {
+	private void afterThrowingAdviceDemo(AccountDAO accountDAO) {
+		try {
+			List<Account> accounts = accountDAO.findAccounts(true);
+		} catch (Exception e) {
+			System.out.println("Exception was caused");
+		}
+	}
+
+	private void afterReturningAdviceDemo(AccountDAO accountDAO) {
 
 		List<Account> accounts = accountDAO.findAccounts();
 	}
 
-	public void beforeAdviceDemo(AccountDAO accountDAO, MembershipDAO membershipDAO) {
+	private void beforeAdviceDemo(AccountDAO accountDAO, MembershipDAO membershipDAO) {
 
 		accountDAO.saveAccount(new Account("test", "test"), true);
 

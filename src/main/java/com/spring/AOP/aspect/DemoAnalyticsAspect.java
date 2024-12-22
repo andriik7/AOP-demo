@@ -5,6 +5,7 @@ import com.spring.AOP.model.Membership;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.core.annotation.Order;
@@ -16,6 +17,16 @@ import org.springframework.stereotype.Component;
 public class DemoAnalyticsAspect {
 
     Logger logger = LogManager.getLogger(DemoAnalyticsAspect.class);
+
+    @AfterThrowing(pointcut = "com.spring.AOP.aspect.expressions.AOPExpressions.forFindAccounts()",
+            throwing = "theExc")
+    public void afterThrowingFindAccounts(JoinPoint theJoinPoint, Throwable theExc) {
+
+        logger.warn("====>>>> Executing @AfterThrowing on method: " + theJoinPoint.getSignature().toShortString());
+
+        logger.warn("====>>>> The exception is: " + theExc);
+    }
+
 
     @Before("com.spring.AOP.aspect.expressions.AOPExpressions.forDaoPackageNoGetterSetter()")
     public void performAnalysis(JoinPoint theJoinPoint) {
