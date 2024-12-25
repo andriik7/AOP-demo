@@ -12,6 +12,15 @@ public class TrafficFortuneServiceImpl implements TrafficFortuneService {
     Logger logger = LogManager.getLogger(TrafficFortuneServiceImpl.class);
 
     @Override
+    public void getFortune(boolean tripWire) {
+        logger.warn("Executing void getFortune(boolean tripWire) method");
+        if (tripWire) {
+            throw new RuntimeException("Exception caused!");
+        }
+        getFortune();
+    }
+
+    @Override
     public String getFortune() {
 
         logger.warn("Executing getFortune() method");

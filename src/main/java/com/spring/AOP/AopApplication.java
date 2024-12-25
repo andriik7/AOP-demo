@@ -29,8 +29,15 @@ public class AopApplication {
 
 			//afterThrowingAdviceDemo(accountDAO);
 			
-			aroundAdviceDemo(service);
+			// aroundAdviceDemo(service);
+
+			aroundAdviceHandleExceptionDemo(service);
 		};
+	}
+
+	private void aroundAdviceHandleExceptionDemo(TrafficFortuneService service) {
+
+		service.getFortune(true);
 	}
 
 	private void aroundAdviceDemo(TrafficFortuneService service) {

@@ -21,7 +21,7 @@ public class DemoLoggingAspect {
 
     private static final Logger logger = LogManager.getLogger(DemoLoggingAspect.class);
 
-    @Around("execution(* com.spring.AOP.service.*.getFortune(..))")
+    @Around("execution(String com.spring.AOP.service.*.getFortune(..))")
     public Object aroundGetFortune(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
 
         logger.warn("====>>>> Executing @Around advice on method: {}",
